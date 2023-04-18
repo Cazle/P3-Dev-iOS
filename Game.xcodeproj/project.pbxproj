@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		29A988A629EBF17D00A97395 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988A529EBF17D00A97395 /* main.swift */; };
+		29A988AD29EBF22300A97395 /* Heroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988AC29EBF22300A97395 /* Heroes.swift */; };
+		29A988AF29EBF29600A97395 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988AE29EBF29600A97395 /* Warrior.swift */; };
+		29A988B129EBF2EA00A97395 /* Thief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B029EBF2EA00A97395 /* Thief.swift */; };
+		29A988B329EBF34E00A97395 /* Healer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B229EBF34E00A97395 /* Healer.swift */; };
+		29A988B529EBF3AD00A97395 /* PlayerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B429EBF3AD00A97395 /* PlayerOne.swift */; };
+		29A988B729EBF4B300A97395 /* PlayerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B629EBF4B300A97395 /* PlayerTwo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,12 @@
 /* Begin PBXFileReference section */
 		29A988A229EBF17D00A97395 /* Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A988A529EBF17D00A97395 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		29A988AC29EBF22300A97395 /* Heroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heroes.swift; sourceTree = SOURCE_ROOT; };
+		29A988AE29EBF29600A97395 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = SOURCE_ROOT; };
+		29A988B029EBF2EA00A97395 /* Thief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thief.swift; sourceTree = SOURCE_ROOT; };
+		29A988B229EBF34E00A97395 /* Healer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healer.swift; sourceTree = SOURCE_ROOT; };
+		29A988B429EBF3AD00A97395 /* PlayerOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerOne.swift; sourceTree = SOURCE_ROOT; };
+		29A988B629EBF4B300A97395 /* PlayerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTwo.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +69,12 @@
 		29A988A429EBF17D00A97395 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				29A988B629EBF4B300A97395 /* PlayerTwo.swift */,
+				29A988B429EBF3AD00A97395 /* PlayerOne.swift */,
+				29A988B229EBF34E00A97395 /* Healer.swift */,
+				29A988B029EBF2EA00A97395 /* Thief.swift */,
+				29A988AE29EBF29600A97395 /* Warrior.swift */,
+				29A988AC29EBF22300A97395 /* Heroes.swift */,
 				29A988A529EBF17D00A97395 /* main.swift */,
 			);
 			path = Game;
@@ -120,7 +138,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29A988AF29EBF29600A97395 /* Warrior.swift in Sources */,
+				29A988B129EBF2EA00A97395 /* Thief.swift in Sources */,
+				29A988B729EBF4B300A97395 /* PlayerTwo.swift in Sources */,
+				29A988B329EBF34E00A97395 /* Healer.swift in Sources */,
 				29A988A629EBF17D00A97395 /* main.swift in Sources */,
+				29A988AD29EBF22300A97395 /* Heroes.swift in Sources */,
+				29A988B529EBF3AD00A97395 /* PlayerOne.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
