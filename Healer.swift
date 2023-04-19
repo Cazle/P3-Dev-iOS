@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Healer: Heroes{
+class Healer: Hero{
     
     var heal : Int
     
@@ -16,9 +16,4 @@ class Healer: Heroes{
         super .init(weapons: "Book of Wisdom", healthPoints: 70, attack: 10)
     }
 }
-class Wizard: Heroes{
-    
-    init(){
-        super .init(weapons: "Magic Wand", healthPoints: 80, attack: 25)
-    }
-}
+

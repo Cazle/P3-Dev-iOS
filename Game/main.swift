@@ -7,35 +7,49 @@
 
 import Foundation
 
-var theGameIsOn = true
+var game = Game()
+
+game.startingTheGame()
+
 
 class Game {
     
     func startingTheGame(){
-        print("Welcome to the new game of FrenchGame company !")
-        print("Type start to 'start' the game or quit to 'exit' the game.")
+    print("Welcome to the new game of FrenchGame company !")
+    print("""
+     Please select one option.
+     1 : Start game
+     2 : Quit game
+    """)
+        let startMenu = readLine()
+            
+        switch startMenu{
+            
+        case "1" :
+            let chooseTeam = GameSession()
+            chooseTeam.makeATeam()
+            
+        case "2":
+            print("Thanks for playing the game. Good bye !")
+            exit(0)
+            
         
-        var start = readLine()
-        if start == "start"{
-            print("You've started the game")
+        default:
+            print("I didn't understood, please try again.")
         }
-        else{
-            start = "exit"
-            print("You've left the game")
-        }
-        
-        var firstPlayer = PlayerOne()
-        var arrayOfTeam = [String]()
-    }
-        
-           
-        
-        
-        
-        
-        
     }
 }
-var game = Game()
-game.startingTheGame()
+
+class GameSession {
+    
+    
+    func makeATeam(){
+        print("Welcome, make a team please")
+        
+        
+       
+    }
+    
+}
+
 

@@ -8,7 +8,7 @@
 import Foundation
 
 // Corriger Heros
-class Heroes{
+class Hero{
     
     var weapons: String
     var healthPoints : Int
@@ -19,7 +19,7 @@ class Heroes{
         self.healthPoints = healthPoints
         self.attack = attack
     }
-    func attack(target: Heroes){
+    func attack(target: Hero){
         
     }
 }
