@@ -73,11 +73,11 @@
 			children = (
 				29A2B88229EFF4D800FBAB15 /* Wizard.swift */,
 				29A2B88029EFF4B000FBAB15 /* Dwarf.swift */,
-				29A2B87E29EFF43200FBAB15 /* Player.swift */,
 				29A988B229EBF34E00A97395 /* Healer.swift */,
 				29A988B029EBF2EA00A97395 /* Thief.swift */,
 				29A988AE29EBF29600A97395 /* Warrior.swift */,
 				29A988AC29EBF22300A97395 /* Hero.swift */,
+				29A2B87E29EFF43200FBAB15 /* Player.swift */,
 				29A988A529EBF17D00A97395 /* main.swift */,
 			);
 			path = Game;
