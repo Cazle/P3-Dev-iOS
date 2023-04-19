@@ -50,7 +50,8 @@ func makeATeam(){
     
     while playerOne.heroes.count <= 2{
         print("""
- Now, you have to make a team of three heroes.
+ Make a team.
+ You have \(playerOne.heroes.count) heroes on 3
  1 : Warrior
  2 : Wizard
  3 : Thief
