@@ -11,17 +11,31 @@ var theGameIsOn = true
 
 class Game {
     
-    func printHello(){
+    func startingTheGame(){
         print("Welcome to the new game of FrenchGame company !")
+        print("Type start to 'start' the game or quit to 'exit' the game.")
         
-        if let startingTheGame = readLine(){
-            print("Welcome \(startingTheGame)")
-        }else{
-            print("Veuillez répondre")
+        var start = readLine()
+        if start == "start"{
+            print("You've started the game")
+        }
+        else{
+            start = "exit"
+            print("You've left the game")
         }
         
+        var firstPlayer = PlayerOne()
+        var arrayOfTeam = [String]()
     }
-    
+        
+           
+        
+        
+        
+        
+        
+    }
 }
 var game = Game()
-game.printHello()
+game.startingTheGame()
+
