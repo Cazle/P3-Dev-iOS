@@ -46,7 +46,7 @@ class GameSession {
     func makeATeam(){
         print("Welcome, make a team please")
         
-        
+        var players = Player(name: "First Player", name: "Second Player")
        
     }
     
