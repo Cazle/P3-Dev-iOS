@@ -1,10 +1,3 @@
-//
-//  main.swift
-//  Game
-//
-//  Created by Kyllian GUILLOT on 16/04/2023.
-//
-
 import Foundation
 
 var game = Game()
@@ -27,7 +20,7 @@ class Game {
             
         case "1" :
             let chooseTeam = GameSession()
-            chooseTeam.makeATeam()
+            chooseTeam.makeTeamOne()
             
         case "2":
             print("Thanks for playing the game. Good bye !")
@@ -35,6 +28,7 @@ class Game {
             
         default:
             print("I didn't understood, please try again.")
+            startingTheGame()
         }
     }
 }
@@ -43,12 +37,12 @@ class GameSession {
     
     var playerOne = Player(name: "Player one")
     var playerTwo = Player(name: "Player two")
-
-func makeATeam(){
     
-    while playerOne.heroes.count <= 2 && playerTwo.heroes.count <= 2{
-        print("""
- Player One chose first, then Player Two
+    func makeTeamOne(){
+        
+        while playerOne.heroes.count <= 2{
+            print("""
+ Player One choose 3 heroes,
  You have \(playerOne.heroes.count) heroes on 3
  1 : Warrior
  2 : Wizard
@@ -56,19 +50,19 @@ func makeATeam(){
  4 : Dwarf
  5 : Healer
  """)
-        let playerOneTeam = readLine()
-            print("Player One")
-        switch playerOneTeam{
+            let playerOneTeam = readLine()
+            
+            switch playerOneTeam{
                 
             case "1": playerOne.heroes.append(Warrior())
                 print("You chose Warrior.")
-                    
+                
             case "2": playerOne.heroes.append(Wizard())
                 print("You chose Wizard.")
-
+                
             case "3": playerOne.heroes.append(Thief())
                 print("You chose Thief.")
-                    
+                
             case "4": playerOne.heroes.append(Dwarf())
                 print("You chose Dwarf.")
                 
@@ -76,33 +70,51 @@ func makeATeam(){
                 print("You chose Healer.")
                 
             default: print("You must select between 1 and 5.")
-        }
-            
-        let playerTwoTeam = readLine()
-            print("Player Two")
-        switch playerTwoTeam{
-            
-            case "1": playerTwo.heroes.append(Warrior())
-                print("You chose Warrior.")
-                    
-            case "2": playerTwo.heroes.append(Wizard())
-                print("You chose Wizard.")
-                    
-            case "3": playerTwo.heroes.append(Thief())
-                print("You chose Thief.")
-                    
-            case "4": playerTwo.heroes.append(Dwarf())
-                print("You chose Dwarf.")
-                    
-            case "5": playerTwo.heroes.append(Healer(heal: 20))
-                print("You chose Healer.")
-                    
-            default: print("You must select between 1 and 5.")
-                    
             }
         }
+        makeTeamTwo()
+}
+    
+    func makeTeamTwo(){
+        
+        while playerTwo.heroes.count <= 2 {
+            
+            print("""
+             Player Two choose 3 heroes,
+             You have \(playerTwo.heroes.count) heroes on 3
+             1 : Warrior
+             2 : Wizard
+             3 : Thief
+             4 : Dwarf
+             5 : Healer
+             """)
+                        let playerTwoTeam = readLine()
+                        print("Player Two")
+                        switch playerTwoTeam{
+                            
+                        case "1": playerTwo.heroes.append(Warrior())
+                            print("You chose Warrior.")
+                            
+                        case "2": playerTwo.heroes.append(Wizard())
+                            print("You chose Wizard.")
+                            
+                        case "3": playerTwo.heroes.append(Thief())
+                            print("You chose Thief.")
+                            
+                        case "4": playerTwo.heroes.append(Dwarf())
+                            print("You chose Dwarf.")
+                            
+                        case "5": playerTwo.heroes.append(Healer(heal: 20))
+                            print("You chose Healer.")
+                            
+                        default: print("You must select between 1 and 5.")
+                }
+            }
+        print("\(playerOne.name), you have a \(playerOne.heroes[0]), a \(playerOne.heroes[1]), a \(playerOne.heroes[2])")
+        print("\(playerTwo.name), you have a \(playerTwo.heroes[0]), a \(playerTwo.heroes[1]), a \(playerTwo.heroes[2])")
     }
 }
+
 
 
 
