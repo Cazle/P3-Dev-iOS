@@ -1,9 +1,7 @@
 import Foundation
 
 var game = Game()
-
 game.startingTheGame()
-
 
 class Game {
     
@@ -32,11 +30,12 @@ class Game {
         }
     }
 }
-
 class GameSession {
     
     var playerOne = Player(name: "Player one")
     var playerTwo = Player(name: "Player two")
+    
+    
     
     func makeTeamOne(){
         
@@ -74,7 +73,6 @@ class GameSession {
         }
         makeTeamTwo()
 }
-    
     func makeTeamTwo(){
         
         while playerTwo.heroes.count <= 2 {
@@ -89,7 +87,7 @@ class GameSession {
              5 : Healer
              """)
                         let playerTwoTeam = readLine()
-                        print("Player Two")
+                        
                         switch playerTwoTeam{
                             
                         case "1": playerTwo.heroes.append(Warrior())
@@ -110,12 +108,11 @@ class GameSession {
                         default: print("You must select between 1 and 5.")
                 }
             }
-        print("\(playerOne.name), you have a \(playerOne.heroes[0]), a \(playerOne.heroes[1]), a \(playerOne.heroes[2])")
-        print("\(playerTwo.name), you have a \(playerTwo.heroes[0]), a \(playerTwo.heroes[1]), a \(playerTwo.heroes[2])")
+        
+        print("\(playerOne.name), you have a \(type(of: playerOne.heroes[0])), a \(type(of: playerOne.heroes[1])), a \(type(of: playerOne.heroes[2]))")
+        print("\(playerTwo.name), you have a \(type(of: playerTwo.heroes[0])), a \(type(of: playerTwo.heroes[1])), a \(type(of: playerTwo.heroes[2]))")
     }
 }
-
-
 
 
 
