@@ -37,18 +37,22 @@ class GameSession {
     var playerOne = Player(name: "Player one")
     var playerTwo = Player(name: "Player two")
     
-    func herosNamesOne(){
-        while hero.names.count <= 2{
-            print("\(playerOne.name), please, choose 3 names for your characters")
-            var names = readLine()
+    func herosNames(){
+        print("\(playerOne.name), enter 3 names for your characters.")
+        
+        while hero.names.count <= 5{
+            let names = readLine()
             hero.names.append(names!)
+        if hero.names.count == 3{
+            print("\(playerTwo.name), enter 3 names for you characters.")
+            }
         }
-        print("\(hero.names[0]), \(hero.names[1]), \(hero.names[2])")
+        print("\(hero.names[0]), \(hero.names[1]), \(hero.names[2]), \(hero.names[3]), \(hero.names[4]), \(hero.names[5])")
 }
-    
+
     
     func makeTeamOne(){
-        herosNamesOne()
+        herosNames()
         while playerOne.heroes.count <= 2{
             print("""
  Player One choose 3 heroes,
@@ -118,8 +122,8 @@ class GameSession {
                     default: print("You must select between 1 and 5.")
                 }
             }
-        print("\(playerOne.name), you have a \(type(of: playerOne.heroes[0])), a \(type(of: playerOne.heroes[1])), and a \(type(of: playerOne.heroes[2]))")
-        print("\(playerTwo.name), you have a \(type(of: playerTwo.heroes[0])), a \(type(of: playerTwo.heroes[1])), a \(type(of: playerTwo.heroes[2]))")
+        print("\(playerOne.name), you have a \(type(of: playerOne.heroes[0])) named \(hero.names[0]), a \(type(of: playerOne.heroes[1])) named \(hero.names[1]), and a \(type(of: playerOne.heroes[2])) named \(hero.names[2]).")
+        print("\(playerTwo.name), you have a \(type(of: playerTwo.heroes[0])) named \(hero.names[3]), a \(type(of: playerTwo.heroes[1])) named \(hero.names[4]), and a \(type(of: playerTwo.heroes[2])) named \(hero.names[5]).")
     }
 }
 
