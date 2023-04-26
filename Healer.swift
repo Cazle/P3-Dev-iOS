@@ -1,12 +1,13 @@
 import Foundation
 
-class Healer: Hero{
+class Healer: Hero {
     
-    var heal : Int
+    var heal: Int
     
-    init(heal: Int) {
-        self.heal = heal
-        super .init(weapons: "Book of Wisdom", healthPoints: 70, attack: 10)
-    }
+	init(name: String) {
+		heal = 10
+		
+		super.init(type: .healer, name: name, weapons: "Book of Wisdom", healthPoints: 70, attack: 0)
+	}
 }
 

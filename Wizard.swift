@@ -1,8 +1,8 @@
 import Foundation
 
-class Wizard: Hero{
+class Wizard: Hero {
     
-    init(){
-        super .init(weapons: "Magic Wand", healthPoints: 80, attack: 25)
-    }
+	init(name: String) {
+		super.init(type: .wizard, name: name, weapons: "Magic Wand", healthPoints: 80, attack: 25)
+	}
 }
