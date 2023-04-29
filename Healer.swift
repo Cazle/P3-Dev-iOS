@@ -4,9 +4,9 @@ class Healer: Hero{
     
     var heal : Int
     
-    init(heal: Int) {
+    init(name: String, heal: Int) {
         self.heal = heal
-        super .init(weapons: "Book of Wisdom", healthPoints: 70, attack: 10)
+        super .init(name: name, weapons: "Book of Wisdom", healthPoints: 70, attack: 10)
     }
 }
 
