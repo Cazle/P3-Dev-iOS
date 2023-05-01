@@ -1,7 +1,7 @@
 import Foundation
 
 
-class Hero{
+class Characters{
     
     
     var name: String
@@ -15,7 +15,7 @@ class Hero{
         self.healthPoints = healthPoints
         self.attack = attack
     }
-    func attack(target: Hero){
+    func attack(target: Characters){
         target.healthPoints -= attack
     }
     func heroDescription() -> String{

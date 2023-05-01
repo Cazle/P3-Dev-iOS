@@ -1,6 +1,6 @@
 import Foundation
 
-class Healer: Hero{
+class Healer: Characters{
     
     var heal : Int
     

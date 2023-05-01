@@ -45,76 +45,72 @@ class GameSession {
     var maxHeroesPerPlayer = 3
     
     func startGame(){
-        print("The game is starting.")
-        makingTeams(for: players)
+        print("The game is starting")
+        startingComposingATeam(for: players)
     }
-    
-    func makingTeams(for players: [Player]){
-        print("Players, get ready.")
-        
-        for currentPlayer in players {
-            createOneTeam(for: currentPlayer)
-        }
-    }
-    func createOneTeam(for player: Player){
-        print("\(player.name), choose")
-        
-        while player.heroes.count < maxHeroesPerPlayer{
-            let creatingHero = createHero()
-            player.heroes.append(creatingHero)
+    func startingComposingATeam(for players: [Player]){
+        for player in players {
+            askHero(for: player)
+            
         }
     }
     func askName() -> String{
-        print("Print, enter a name for your hero.")
-        var heroName = ""
-        
-        while heroName.isEmpty{
-            guard let newName = readLine(), !newName.isEmpty else{
-                print("Please, you must write a name")
-                continue
-            }
-            if heroName == newName{
-                print("This name is already taken, chose an other one.")
-                
-            }else{
-                heroName.append(newName)
+        print("Enter a name for your character :")
+        var name = ""
+        let allCharacters = players.flatMap{currentCharacter in currentCharacter.characters}
+        while name.isEmpty{
+            if let newName = readLine(), !newName.isEmpty{
+                for character in allCharacters {
+                    if character.name == newName{
+                        print("This name is already taken.")
+                        return askName()
+                    }
+                    if newName.isEmpty{
+                        print("You must write a name.")
+                        return askName()
+                    }
+                }
+                name = newName
             }
         }
-        return heroName
+        
+        return name
     }
-    
-    func createHero() -> Hero{
+    func askHero(for player: Player){
+        print("\(player.name), you have to chose 3 heroes.")
         
-        print("""
-             1 : Warrior
-             2 : Wizard
-             3 : Thief
-             4 : Dwarf
-             5 : Healer
-             """)
-        let newHero = readLine()
-        
-        switch newHero {
-        case "1":
-            askName()
-            return Warrior(name: "")
-        case "2":
-            return Dwarf(name: "")
-        case "3":
-            return Thief(name: "")
-        case "4":
-            return Wizard(name: "")
-        case "5":
-            return Healer(name: "", heal: 20)
-        default: print("You must choose between 1 and 5")
+        while player.characters.count < maxHeroesPerPlayer{
+            print("""
+            1. Warrior
+            2. Dwarf
+            3. Thief
+            4. Wizard
+            5. Healer
+            """)
+            let askingHero = readLine()
+            let askingName = askName()
+            switch askingHero{
+                
+            case "1":
+                player.characters.append(Warrior(name: askingName))
+                print("You chose a Warrior, named \(askingName)")
+            case "2":
+                player.characters.append(Dwarf(name: askingName))
+                print("You chose a Dward, named \(askingName)")
+            case "3":
+                player.characters.append(Thief(name: askingName))
+                print("You chose a Thief, named \(askingName)")
+            case "4":
+                player.characters.append(Wizard(name: askingName))
+                print("You chose a Wizard, named \(askingName)")
+            case "5":
+                player.characters.append(Healer(name: askingName, heal: 20))
+                print("You chose a Healer, named \(askingName)")
+            default: print("you have to chose between 1 and 5")
+            }
         }
-        return createHero()
     }
 }
-        
-    
-   
-    // TODO: Fonction pour deux équipes de deux joueurs, et leur mettre une limite de héros
-    // TODO: Fonction pour demander le nom du héro, pour chaque joueur et faire en sorte qu'il ait rempli quelque chose, et que ce nom n'existe pas
-    // TODO: Fonction pour choisir ces heros, et appeler la fonction précedente pour ajouter le nom au héro.
-    
+
+
+
