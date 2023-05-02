@@ -38,6 +38,7 @@ class GameSession {
     var playerOne = Player(name: "Player one")
     var playerTwo = Player(name: "Player two")
     
+    // Variable to handle our two players
     var players: [Player] {
         return [playerOne, playerTwo]
     }
@@ -48,18 +49,22 @@ class GameSession {
         print("The game is starting")
         startingComposingATeam(for: players)
     }
+    // Launch the composition of each player
     func startingComposingATeam(for players: [Player]){
         for player in players {
             askHero(for: player)
             
+            // resume the team for the player
             for resume in player.characters{
                 print("\(resume.heroDescription())")
             }
         }
         
-        
+        // Control if the name is unique and make sure that the player has written a name
         func askName() -> String{
+            print("                                 ")
             print("Enter a name for your character :")
+            print("                                 ")
             var name = ""
             let allCharacters = players.flatMap{currentCharacter in currentCharacter.characters}
             while name.isEmpty{
@@ -72,16 +77,20 @@ class GameSession {
                     }
                     name = newName
                 }
-                print("You must write a name.")
+                else{
+                    print("You must write a name.")
+                }
             }
             return name
         }
+        // The player chose a hero between the 5 available
         func askHero(for player: Player){
             print("                                         ")
             print("\(player.name), you have to chose 3 heroes.")
             print("                                         ")
         
             while player.characters.count < maxHeroesPerPlayer{
+                print("\(player.name), you've got \(player.characters.count + 1) on 3")
                 print("""
             1. Warrior
             2. Dwarf
@@ -101,7 +110,7 @@ class GameSession {
                 case "2":
                     player.characters.append(Dwarf(name: askingName))
                     print("                                         ")
-                    print("You chose a Dward, named \(askingName)")
+                    print("You chose a Dwarf, named \(askingName)")
                     print("                                         ")
                 case "3":
                     player.characters.append(Thief(name: askingName))
@@ -125,12 +134,29 @@ class GameSession {
         var _ = startBattle()
         func startBattle(){
             
+            let numberOfTurn = 0
+            
             print("                  ")
             print("                  ")
-            print("Je suis le combat.")
+            print("Entering battle phase.")
+            
+            for _ in players {
+                selectCharacter()
+            }
         }
+        func selectCharacter(){
+            print("Je suis la fonction combat")
+            for player in players {
+                print("\(player.name), you have to chose between your 3 characters")
+                
+                print("\(player.characters.forEach{print($0)})")
+                }
+            }
+        }
+        
     }
-}
+
+
 
 
 
