@@ -31,14 +31,14 @@
 
 /* Begin PBXFileReference section */
 		29A2B87E29EFF43200FBAB15 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = SOURCE_ROOT; };
-		29A2B88029EFF4B000FBAB15 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dwarf.swift; sourceTree = SOURCE_ROOT; };
-		29A2B88229EFF4D800FBAB15 /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = SOURCE_ROOT; };
+		29A2B88029EFF4B000FBAB15 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dwarf.swift; path = Game/Characters/Dwarf.swift; sourceTree = SOURCE_ROOT; };
+		29A2B88229EFF4D800FBAB15 /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Wizard.swift; path = Game/Characters/Wizard.swift; sourceTree = SOURCE_ROOT; };
 		29A988A229EBF17D00A97395 /* Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A988A529EBF17D00A97395 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		29A988AC29EBF22300A97395 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = SOURCE_ROOT; };
-		29A988AE29EBF29600A97395 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = SOURCE_ROOT; };
-		29A988B029EBF2EA00A97395 /* Thief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thief.swift; sourceTree = SOURCE_ROOT; };
-		29A988B229EBF34E00A97395 /* Healer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healer.swift; sourceTree = SOURCE_ROOT; };
+		29A988AC29EBF22300A97395 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Characters.swift; path = Game/Characters.swift; sourceTree = SOURCE_ROOT; };
+		29A988AE29EBF29600A97395 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Warrior.swift; path = Game/Characters/Warrior.swift; sourceTree = SOURCE_ROOT; };
+		29A988B029EBF2EA00A97395 /* Thief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Thief.swift; path = Game/Characters/Thief.swift; sourceTree = SOURCE_ROOT; };
+		29A988B229EBF34E00A97395 /* Healer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Healer.swift; path = Game/Characters/Healer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +52,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2947CBCA2A0169E90081E17D /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				29A2B88029EFF4B000FBAB15 /* Dwarf.swift */,
+				29A2B88229EFF4D800FBAB15 /* Wizard.swift */,
+				29A988B029EBF2EA00A97395 /* Thief.swift */,
+				29A988AE29EBF29600A97395 /* Warrior.swift */,
+				29A988B229EBF34E00A97395 /* Healer.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
 		29A9889929EBF17D00A97395 = {
 			isa = PBXGroup;
 			children = (
@@ -71,13 +83,9 @@
 		29A988A429EBF17D00A97395 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				29A2B88229EFF4D800FBAB15 /* Wizard.swift */,
-				29A2B88029EFF4B000FBAB15 /* Dwarf.swift */,
-				29A988B229EBF34E00A97395 /* Healer.swift */,
-				29A988B029EBF2EA00A97395 /* Thief.swift */,
-				29A988AE29EBF29600A97395 /* Warrior.swift */,
-				29A988AC29EBF22300A97395 /* Characters.swift */,
+				2947CBCA2A0169E90081E17D /* Characters */,
 				29A2B87E29EFF43200FBAB15 /* Player.swift */,
+				29A988AC29EBF22300A97395 /* Characters.swift */,
 				29A988A529EBF17D00A97395 /* main.swift */,
 			);
 			path = Game;

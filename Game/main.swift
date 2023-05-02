@@ -52,62 +52,82 @@ class GameSession {
         for player in players {
             askHero(for: player)
             
-        }
-    }
-    func askName() -> String{
-        print("Enter a name for your character :")
-        var name = ""
-        let allCharacters = players.flatMap{currentCharacter in currentCharacter.characters}
-        while name.isEmpty{
-            if let newName = readLine(), !newName.isEmpty{
-                for character in allCharacters {
-                    if character.name == newName{
-                        print("This name is already taken.")
-                        return askName()
-                    }
-                    if newName.isEmpty{
-                        print("You must write a name.")
-                        return askName()
-                    }
-                }
-                name = newName
+            for resume in player.characters{
+                print("\(resume.heroDescription())")
             }
         }
         
-        return name
-    }
-    func askHero(for player: Player){
-        print("\(player.name), you have to chose 3 heroes.")
         
-        while player.characters.count < maxHeroesPerPlayer{
-            print("""
+        func askName() -> String{
+            print("Enter a name for your character :")
+            var name = ""
+            let allCharacters = players.flatMap{currentCharacter in currentCharacter.characters}
+            while name.isEmpty{
+                if let newName = readLine(), !newName.isEmpty{
+                    for character in allCharacters {
+                        if character.name == newName{
+                            print("This name is already taken.")
+                            return askName()
+                        }
+                    }
+                    name = newName
+                }
+                print("You must write a name.")
+            }
+            return name
+        }
+        func askHero(for player: Player){
+            print("                                         ")
+            print("\(player.name), you have to chose 3 heroes.")
+            print("                                         ")
+        
+            while player.characters.count < maxHeroesPerPlayer{
+                print("""
             1. Warrior
             2. Dwarf
             3. Thief
             4. Wizard
             5. Healer
             """)
-            let askingHero = readLine()
-            let askingName = askName()
-            switch askingHero{
-                
-            case "1":
-                player.characters.append(Warrior(name: askingName))
-                print("You chose a Warrior, named \(askingName)")
-            case "2":
-                player.characters.append(Dwarf(name: askingName))
-                print("You chose a Dward, named \(askingName)")
-            case "3":
-                player.characters.append(Thief(name: askingName))
-                print("You chose a Thief, named \(askingName)")
-            case "4":
-                player.characters.append(Wizard(name: askingName))
-                print("You chose a Wizard, named \(askingName)")
-            case "5":
-                player.characters.append(Healer(name: askingName, heal: 20))
-                print("You chose a Healer, named \(askingName)")
-            default: print("you have to chose between 1 and 5")
+                let askingHero = readLine()
+                let askingName = askName()
+                switch askingHero{
+                    
+                case "1":
+                    player.characters.append(Warrior(name: askingName))
+                    print("                                         ")
+                    print("You chose a Warrior, named \(askingName)")
+                    print("                                         ")
+                case "2":
+                    player.characters.append(Dwarf(name: askingName))
+                    print("                                         ")
+                    print("You chose a Dward, named \(askingName)")
+                    print("                                         ")
+                case "3":
+                    player.characters.append(Thief(name: askingName))
+                    print("                                         ")
+                    print("You chose a Thief, named \(askingName)")
+                    print("                                         ")
+                case "4":
+                    player.characters.append(Wizard(name: askingName))
+                    print("                                         ")
+                    print("You chose a Wizard, named \(askingName)")
+                    print("                                         ")
+                case "5":
+                    player.characters.append(Healer(name: askingName, heal: 20))
+                    print("                                         ")
+                    print("You chose a Healer, named \(askingName)")
+                    print("                                         ")
+                default: print("you have to chose between 1 and 5")
+                }
             }
+        }
+        var _ = startBattle()
+        func startBattle(){
+            
+            print("                  ")
+            print("                  ")
+            print("Je suis le combat.")
         }
     }
 }
