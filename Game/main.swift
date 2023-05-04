@@ -53,11 +53,12 @@ class GameSession {
     func startingComposingTeams(for players: [Player]){
         for player in players {
             createHero(for: player)
-            startBattle()
             
-            // resume the team for the player
-            for resume in player.characters{
-                print("\(resume.heroDescription())")
+            // If both players have made their team, we resume the team for each player, and prepare for the fight !
+            if playerOne.characters.count == maxHeroesPerPlayer &&
+                playerTwo.characters.count == maxHeroesPerPlayer{
+                
+                resumeOfTeams()
             }
         }
     }
@@ -165,21 +166,64 @@ class GameSession {
                 }
             }
         }
-        func startBattle(){
-            print("                  ")
+    // Resume of each player's team
+    func resumeOfTeams(){
             print("Entering battle phase.")
-            
-            }
-        func selectCharacter() -> Character{
-                    print("Je suis la fonction combat")
-                    for player in players {
-                        print("\(player.name), you have to chose between your 3 characters")
-                        
-                        print("\(player.characters.forEach{print($0)})")
+            for player in players {
+                print("                                     ")
+                print("\(player.name), you have the following heroes :")
+                print("                                     ")
+                for eachHeroes in player.characters{
+                    print("\(eachHeroes.heroDescription())")
                 }
-                return selectCharacter()
             }
+        let _ = Battle()
     }
+    
+    func Battle(){
+        
+        var numberOfTurn = 0
+        var gameIsOver = true
+               
+        print("Salut cmoi")
+        var firstPlayer = playerOne
+        var secondPlayer = playerTwo
+        
+        var firstTeam = playerOne.characters
+        var secondTeam = playerTwo.characters
+        
+        
+        while gameIsOver{
+            
+        print("\(firstPlayer.name), you have to choose between your 3 heroes to do an action.")
+            
+            for (index, availableHero) in firstPlayer.characters.enumerated(){
+                print("\(index + 1): \(availableHero.heroDescription())")
+               }
+            if let choosing = readLine(), let currentIndex = Int(choosing){
+                if currentIndex > 0 && currentIndex <= firstPlayer.characters.count{
+                    let selectedHero = firstPlayer.characters[currentIndex - 1]
+                    print("          ")
+                    print("You have chosen \(selectedHero.heroDescription())")
+                    print("          ")
+                }else{
+                    print("Invalid choice, chose between 1 and 3")
+                }
+            }
+            
+            
+    
+            swap(&firstPlayer, &secondPlayer)
+            
+            numberOfTurn += 1
+            
+            if numberOfTurn == 1{
+                gameIsOver = false
+            }
+        }
+        
+    }
+}
     
 
 
