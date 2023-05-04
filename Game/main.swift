@@ -60,6 +60,7 @@ class GameSession {
                 print("\(resume.heroDescription())")
             }
         }
+    }
         
         // Control if the name is unique and make sure that the player has written a name
         func askName() -> String{
@@ -71,8 +72,8 @@ class GameSession {
             while name.isEmpty{
                 if let newName = readLine(), !newName.isEmpty{
                     var hasFoundADuplicate = false
+                    
                     for character in allCharacters {
-                        
                         if character.name == newName{
                             hasFoundADuplicate = true
                             break
@@ -97,11 +98,11 @@ class GameSession {
         func askHero() -> Int{
             
             print("""
-        1. Warrior
-        2. Dwarf
-        3. Thief
-        4. Wizard
-        5. Healer
+        1. Warrior ⚔️
+        2. Dwarf ⛏️
+        3. Thief 🥷
+        4. Wizard 🧙‍♂️
+        5. Healer 🧝🏼‍♂️
         """)
             let characterChoice = readLine()
             
@@ -165,28 +166,21 @@ class GameSession {
             }
         }
         func startBattle(){
-            
-            let numberOfTurn = 0
-            
-            print("                  ")
             print("                  ")
             print("Entering battle phase.")
             
-            for _ in players {
-                selectCharacter()
             }
-        }
-        func selectCharacter(){
-            print("Je suis la fonction combat")
-            for player in players {
-                print("\(player.name), you have to chose between your 3 characters")
-                
-                print("\(player.characters.forEach{print($0)})")
+        func selectCharacter() -> Character{
+                    print("Je suis la fonction combat")
+                    for player in players {
+                        print("\(player.name), you have to chose between your 3 characters")
+                        
+                        print("\(player.characters.forEach{print($0)})")
                 }
+                return selectCharacter()
             }
-        }
-        
     }
+    
 
 
 

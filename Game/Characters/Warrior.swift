@@ -1,6 +1,6 @@
 import Foundation
 
-class Warrior: Characters{
+class Warrior: Character{
     
     init(name: String){
         super .init(name: name, weapons: "Sword", healthPoints: 100, attack: 20)

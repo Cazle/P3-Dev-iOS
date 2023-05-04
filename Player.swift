@@ -3,7 +3,7 @@ import Foundation
 class Player{
 
     var name: String
-    var characters = [Characters]()
+    var characters = [Character]()
     
     
     init(name: String) {
