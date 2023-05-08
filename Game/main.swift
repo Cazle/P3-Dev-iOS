@@ -201,23 +201,68 @@ class GameSession {
             chooseCharacter(for: player)
         }
     }
-    // TODO: 2. Si c'est un healer, proposer de soigner. Sinon, le personnage attaque.
+    
     // TODO: 3. Cas Healer, proposer l'équipe alliée. Si c'est un attaquant, proposer l'équipe ennemie.
     
     func choosingAnAction(for hero: Character, in player: Player){
         if hero is Healer{
             healChoice(in: player)
         }else{
-            attackChoice(in: player)
+            attackChoice(for: hero)
         }
     }
     
     
     func healChoice(in allyTeam: Player){
-        print("Je suis la fonction heal")
+        print("Choose a character to heal.")
+        print("             ")
+        for (index, hero) in allyTeam.characters.enumerated(){
+            print("\(index + 1): \(hero.name) has currently \(hero.healthPoints) HP.")
+        }
+        if let healing = readLine(), !healing.isEmpty, let currentIndex = Int(healing){
+            if currentIndex > 0 && currentIndex <= allyTeam.characters.count{
+                let heroToHeal = allyTeam.characters[currentIndex - 1]
+                heroToHeal.healthPoints += 30
+                print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
+            }
+            else{
+                print("You must select between 1 and \(allyTeam.characters.count)")
+                healChoice(in: allyTeam)
+            }
+        }
+        else{
+            print("Choose a valid number.")
+            healChoice(in: allyTeam)
+        }
     }
-    func attackChoice(in enemyTeam: Player){
-        print("Je suis la fonction attack")
+
+    
+    func attackChoice(for hero: Character){
+        
+        print("Choose one character to attack.")
+        for (index, enemies) in playerTwo.characters.enumerated(){
+            print("\(index + 1): \(enemies.heroDescription())")
+        }
+        if let attack = readLine(), !attack.isEmpty, let currentIndex = Int(attack){
+            if currentIndex > 0 && currentIndex <= playerTwo.characters.count{
+                let attackedHero = playerTwo.characters[currentIndex - 1]
+                
+                print("\(attackedHero.name), is chosen to take the attack.")
+                
+                attackedHero.healthPoints -= hero.damage
+                
+                print("\(hero.name) has attacked \(attackedHero.name) with his \(hero.weapons) and has done \(hero.damage) damage.")
+                print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
+            }else{
+                print("You must select between 1 and \(playerTwo.characters.count)")
+                attackChoice(for: hero)
+            }
+        }
+        else{
+            print("Choose a valid number.")
+            attackChoice(for: hero)
+        }
+        swap(&playerTwo, &playerOne)
     }
     
     func Battle(){
@@ -229,25 +274,19 @@ class GameSession {
         var firstPlayer = playerOne
         var secondPlayer = playerTwo
         
-        _ = playerOne.characters
-        _ = playerTwo.characters
-        
-        
         while gameIsOver{
             
-        print("        ")
         print("        ")
             
         print("\(firstPlayer.name), you have to choose between your available heroes.")
         chooseCharacter(for: firstPlayer)
-        
             
     
             swap(&firstPlayer, &secondPlayer)
             
             numberOfTurn += 1
             
-            if numberOfTurn == 1{
+            if numberOfTurn == 20{
                 gameIsOver = false
             }
         }
