@@ -26,11 +26,4 @@ class Character{
             }
         }
     }
-    func checkingHealthPointCharacter(of: Character, team: Player){
-        for currentHero in team.characters{
-            if currentHero.healthPoints == 0{
-                
-            }
-        }
-    }
 }

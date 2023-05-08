@@ -158,7 +158,7 @@ class GameSession {
                     print("You chose a Wizard, named \(askingName)")
                     print("                                         ")
                 case 5:
-                    player.characters.append(Healer(name: askingName, heal: 20))
+                    player.characters.append(Healer(name: askingName, heal: 30))
                     print("                                         ")
                     print("You chose a Healer, named \(askingName)")
                     print("                                         ")
@@ -177,7 +177,47 @@ class GameSession {
                     print("\(eachHeroes.heroDescription())")
                 }
             }
-        let _ = Battle()
+        Battle()
+    }
+    // This function allow the player to choose a character, and the function control the user input.
+    func chooseCharacter(for player: Player){
+        for (index, availableHero) in player.characters.enumerated(){
+            print("\(index + 1): \(availableHero.heroDescription())")
+           }
+        
+        if let choosing = readLine(), let currentIndex = Int(choosing){
+            if currentIndex > 0 && currentIndex <= player.characters.count{
+                let selectedHero = player.characters[currentIndex - 1]
+                print("       ")
+                print("You have chosen \(selectedHero.heroDescription())")
+                print("       ")
+                choosingAnAction(for: selectedHero, in: player)
+            }else{
+                print("You have to chose a number between 1 and \(player.characters.count)")
+                chooseCharacter(for: player)
+            }
+        }else{
+            print("You didn't write any number, please choose between 1 and \(player.characters.count)")
+            chooseCharacter(for: player)
+        }
+    }
+    // TODO: 2. Si c'est un healer, proposer de soigner. Sinon, le personnage attaque.
+    // TODO: 3. Cas Healer, proposer l'équipe alliée. Si c'est un attaquant, proposer l'équipe ennemie.
+    
+    func choosingAnAction(for hero: Character, in player: Player){
+        if hero is Healer{
+            healChoice(in: player)
+        }else{
+            attackChoice(in: player)
+        }
+    }
+    
+    
+    func healChoice(in allyTeam: Player){
+        print("Je suis la fonction heal")
+    }
+    func attackChoice(in enemyTeam: Player){
+        print("Je suis la fonction attack")
     }
     
     func Battle(){
@@ -189,28 +229,18 @@ class GameSession {
         var firstPlayer = playerOne
         var secondPlayer = playerTwo
         
-        var firstTeam = playerOne.characters
-        var secondTeam = playerTwo.characters
+        _ = playerOne.characters
+        _ = playerTwo.characters
         
         
         while gameIsOver{
             
-        print("\(firstPlayer.name), you have to choose between your 3 heroes to do an action.")
+        print("        ")
+        print("        ")
             
-            for (index, availableHero) in firstPlayer.characters.enumerated(){
-                print("\(index + 1): \(availableHero.heroDescription())")
-               }
-            if let choosing = readLine(), let currentIndex = Int(choosing){
-                if currentIndex > 0 && currentIndex <= firstPlayer.characters.count{
-                    let selectedHero = firstPlayer.characters[currentIndex - 1]
-                    print("          ")
-                    print("You have chosen \(selectedHero.heroDescription())")
-                    print("          ")
-                }else{
-                    print("Invalid choice, chose between 1 and 3")
-                }
-            }
-            
+        print("\(firstPlayer.name), you have to choose between your available heroes.")
+        chooseCharacter(for: firstPlayer)
+        
             
     
             swap(&firstPlayer, &secondPlayer)
