@@ -17,6 +17,7 @@
 		29A988AF29EBF29600A97395 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988AE29EBF29600A97395 /* Warrior.swift */; };
 		29A988B129EBF2EA00A97395 /* Thief.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B029EBF2EA00A97395 /* Thief.swift */; };
 		29A988B329EBF34E00A97395 /* Healer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988B229EBF34E00A97395 /* Healer.swift */; };
+		EDA2CAA32A0BD510003214B0 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA2CAA22A0BD510003214B0 /* Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		29A988AE29EBF29600A97395 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Warrior.swift; path = Game/Characters/Warrior.swift; sourceTree = SOURCE_ROOT; };
 		29A988B029EBF2EA00A97395 /* Thief.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Thief.swift; path = Game/Characters/Thief.swift; sourceTree = SOURCE_ROOT; };
 		29A988B229EBF34E00A97395 /* Healer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Healer.swift; path = Game/Characters/Healer.swift; sourceTree = SOURCE_ROOT; };
+		EDA2CAA22A0BD510003214B0 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		29A9889929EBF17D00A97395 = {
 			isa = PBXGroup;
 			children = (
+				EDA2CAA22A0BD510003214B0 /* Action.swift */,
 				29A988A429EBF17D00A97395 /* Game */,
 				29A988A329EBF17D00A97395 /* Products */,
 			);
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A2B88329EFF4D800FBAB15 /* Wizard.swift in Sources */,
+				EDA2CAA32A0BD510003214B0 /* Action.swift in Sources */,
 				29A72FE42A0A8B4C00221766 /* Game.swift in Sources */,
 				29A72FE62A0A8BA000221766 /* GameSession.swift in Sources */,
 				29A988AF29EBF29600A97395 /* Warrior.swift in Sources */,
