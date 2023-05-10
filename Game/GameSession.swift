@@ -167,10 +167,19 @@ class GameSession {
     }
     // If the chosen character is a healer, we redirect the player to chose on hero to heal, otherwise, we redirect the player to chose an enemy to attack.
     func choosingAnAction(for hero: Character, in player: Player){
-        if hero is Healer{
-            healChoice(for: hero, in: player)
-        }else{
+        print("Choose an action for \(hero.name) !")
+        print("""
+        1. Attack ⚔️
+        2. Heal ❤️
+        """)
+        let choice = readLine()
+        
+        switch choice{
+        case "1":
             attackChoice(for: hero, target: player)
+        case "2":
+            healChoice(for: hero, in: player)
+        default: print("You must chose between 1 and 2")
         }
     }
     
@@ -184,7 +193,7 @@ class GameSession {
         if let healing = readLine(), !healing.isEmpty, let currentIndex = Int(healing){
             if currentIndex > 0 && currentIndex <= allyTeam.characters.count{
                 let heroToHeal = allyTeam.characters[currentIndex - 1]
-                print("\(heroToHeal.name), is going to be healed by \(alliedHero.name) and his \(alliedHero.weapons) by \(alliedHero.heal) HP.")
+                print("\(heroToHeal.name), is going to be healed by \(alliedHero.name) and increase his HP by \(alliedHero.heal)")
                 heroToHeal.healthPoints += alliedHero.heal
                 print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
             }
@@ -230,6 +239,28 @@ class GameSession {
             attackChoice(for: alliedHero, target: enemyTeam)
         }
     }
+    func firstPlayerWin(){
+        print("             ")
+        print("\(playerTwo.name), has won the game ! Congratulations ! 🌟")
+        print("You had these characters when you won:")
+        print("             ")
+        for characterRemaining in playerTwo.characters{
+            print("""
+        \(characterRemaining.heroDescription())
+        """)
+        }
+    }
+    func secondPlayerWin(){
+        print("             ")
+        print("\(playerOne.name), has won the game ! Congratulations ! 🌟")
+        print("You had these characters when you won:")
+        print("             ")
+        for characterRemaining in playerOne.characters{
+            print("""
+        \(characterRemaining.heroDescription())
+        """)
+        }
+    }
     // In this function, we create a loop while, who will loop until one of the two players has no characters alive. The winner is printed as well.
     func Battle(){
         
@@ -241,26 +272,22 @@ class GameSession {
         
         while gameIsOn{
             print("        ")
-            
             print("\(firstPlayer.name), you have to choose between your available heroes.")
             chooseCharacter(for: firstPlayer)
             
             swap(&firstPlayer, &secondPlayer)
             
             if firstPlayer.characters.isEmpty{
-                print("             ")
-                print("\(secondPlayer.name), has won the game ! Congratulations ! 🌟")
+                secondPlayerWin()
                 print("The game ended at round \(numberOfTurn).")
                 gameIsOn = false
                 restartingTheGame()
             }
             if secondPlayer.characters.isEmpty{
-                print("             ")
-                print("\(firstPlayer.name), has won the game ! Congratulations ! 🌟")
+                firstPlayerWin()
                 print("The game ended at round \(numberOfTurn).")
                 gameIsOn = false
                 restartingTheGame()
-                
             }
             numberOfTurn += 1
         }
