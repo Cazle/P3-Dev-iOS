@@ -40,14 +40,12 @@ class GameSession {
         while name.isEmpty{
             if let newName = readLine(), !newName.isEmpty{
                 var hasFoundADuplicate = false
-                
                 for character in allCharacters {
                     if character.name == newName{
                         hasFoundADuplicate = true
                         break
                     }
                 }
-                
                 if !hasFoundADuplicate{
                     name = newName
                 } else {
@@ -218,7 +216,7 @@ class GameSession {
                 attackedHero.healthPoints -= alliedHero.damage
                 print("\(alliedHero.name), has done \(alliedHero.damage) damage with his \(alliedHero.weapons) to \(attackedHero.name)")
                 print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
-                // If the chosen enemy has 0 or less Healthpoints, we remove it from the array. He's dead.
+                // If the chosen enemy has 0 Healthpoints or less, we remove it from the array. He's dead.
                 if attackedHero.healthPoints <= 0{
                     print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
                     opposingTeam.characters.remove(at: currentIndex - 1)
@@ -232,6 +230,7 @@ class GameSession {
             attackChoice(for: alliedHero, target: enemyTeam)
         }
     }
+    // In this function, we create a loop while, who will loop until one of the two players has no characters alive. The winner is printed as well.
     func Battle(){
         
         var numberOfTurn = 0
@@ -249,16 +248,42 @@ class GameSession {
             swap(&firstPlayer, &secondPlayer)
             
             if firstPlayer.characters.isEmpty{
+                print("             ")
                 print("\(secondPlayer.name), has won the game ! Congratulations ! 🌟")
                 print("The game ended at round \(numberOfTurn).")
                 gameIsOn = false
+                restartingTheGame()
             }
             if secondPlayer.characters.isEmpty{
+                print("             ")
                 print("\(firstPlayer.name), has won the game ! Congratulations ! 🌟")
                 print("The game ended at round \(numberOfTurn).")
                 gameIsOn = false
+                restartingTheGame()
+                
             }
             numberOfTurn += 1
+        }
+    }
+    func restartingTheGame(){
+        print("                 ")
+        print("Would you like to restart the game ?")
+        print("""
+        1: Restarting the game
+        2: Exit the game
+        """)
+        let choice = readLine()
+        
+        switch choice{
+        case "1":
+            playerOne.characters.removeAll()
+            playerTwo.characters.removeAll()
+            let newGame = Game()
+            newGame.startingTheGame()
+        case "2":
+            print("Thanks for playing the new game of the FrenchGame company, we hope to see you soon !")
+            exit(0)
+        default: print("You must choose between 1 and 2")
         }
     }
 }
