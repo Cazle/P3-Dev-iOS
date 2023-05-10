@@ -10,6 +10,8 @@
 		29A2B87F29EFF43200FBAB15 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2B87E29EFF43200FBAB15 /* Player.swift */; };
 		29A2B88129EFF4B000FBAB15 /* Dwarf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2B88029EFF4B000FBAB15 /* Dwarf.swift */; };
 		29A2B88329EFF4D800FBAB15 /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2B88229EFF4D800FBAB15 /* Wizard.swift */; };
+		29A72FE42A0A8B4C00221766 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A72FE32A0A8B4C00221766 /* Game.swift */; };
+		29A72FE62A0A8BA000221766 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A72FE52A0A8BA000221766 /* GameSession.swift */; };
 		29A988A629EBF17D00A97395 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988A529EBF17D00A97395 /* main.swift */; };
 		29A988AD29EBF22300A97395 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988AC29EBF22300A97395 /* Character.swift */; };
 		29A988AF29EBF29600A97395 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A988AE29EBF29600A97395 /* Warrior.swift */; };
@@ -33,6 +35,8 @@
 		29A2B87E29EFF43200FBAB15 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = SOURCE_ROOT; };
 		29A2B88029EFF4B000FBAB15 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dwarf.swift; path = Game/Characters/Dwarf.swift; sourceTree = SOURCE_ROOT; };
 		29A2B88229EFF4D800FBAB15 /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Wizard.swift; path = Game/Characters/Wizard.swift; sourceTree = SOURCE_ROOT; };
+		29A72FE32A0A8B4C00221766 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		29A72FE52A0A8BA000221766 /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		29A988A229EBF17D00A97395 /* Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A988A529EBF17D00A97395 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		29A988AC29EBF22300A97395 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Character.swift; path = Game/Character.swift; sourceTree = SOURCE_ROOT; };
@@ -87,6 +91,8 @@
 				29A988AC29EBF22300A97395 /* Character.swift */,
 				29A988A529EBF17D00A97395 /* main.swift */,
 				29A2B87E29EFF43200FBAB15 /* Player.swift */,
+				29A72FE32A0A8B4C00221766 /* Game.swift */,
+				29A72FE52A0A8BA000221766 /* GameSession.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -150,6 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A2B88329EFF4D800FBAB15 /* Wizard.swift in Sources */,
+				29A72FE42A0A8B4C00221766 /* Game.swift in Sources */,
+				29A72FE62A0A8BA000221766 /* GameSession.swift in Sources */,
 				29A988AF29EBF29600A97395 /* Warrior.swift in Sources */,
 				29A2B87F29EFF43200FBAB15 /* Player.swift in Sources */,
 				29A988B129EBF2EA00A97395 /* Thief.swift in Sources */,
