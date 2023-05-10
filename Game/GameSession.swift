@@ -1,5 +1,10 @@
 import Foundation
 class GameSession {
+    // This enum will serve us later to chose between attack and heal
+    enum Action: Int, CaseIterable{
+        case attack = 1
+        case heal = 2
+    }
     
     // Declare two players with both name
     var playerOne = Player(name: "Player one")
@@ -10,7 +15,7 @@ class GameSession {
         return [playerOne, playerTwo]
     }
     
-    var maxHeroesPerPlayer = 3
+    var maxHeroesPerPlayer = 1
     
     func startGame(){
         print("The game is starting")
@@ -26,6 +31,8 @@ class GameSession {
                 playerTwo.characters.count == maxHeroesPerPlayer{
                 
                 resumeOfTeams()
+                
+                Battle()
             }
         }
     }
@@ -70,22 +77,16 @@ class GameSession {
         4. Wizard 🧙‍♂️
         5. Healer 🧝🏼‍♂️
         """)
-        let characterChoice = readLine()
-        
-        switch characterChoice{
-        case "1":
-            return 1
-        case "2":
-            return 2
-        case "3":
-            return 3
-        case "4":
-            return 4
-        case "5":
-            return 5
-        default: print("You must choose between 1 and 5.")
+        while true{
+            guard let characterChoice = readLine(),
+                          !characterChoice.isEmpty,
+                          let indexOfCharacter = Int(characterChoice),
+                          (1...5).contains(indexOfCharacter) else{
+                            print("You must choose between 1 and 5")
+                            continue
+                            }
+                    return indexOfCharacter
         }
-        return askHero()
     }
     
     // The player chose a hero between the 5 available
@@ -142,44 +143,56 @@ class GameSession {
                 print("\(eachHeroes.heroDescription())")
             }
         }
-        Battle()
     }
     // This function allow the player to choose a character, and the function control the user input.
-    func chooseCharacter(for player: Player){
+    func chooseCharacter(for player: Player) -> Character{
         for (index, availableHero) in player.characters.enumerated(){
             print("\(index + 1): \(availableHero.heroDescription())")
         }
-        if let choosing = readLine(), let currentIndex = Int(choosing){
-            if currentIndex > 0 && currentIndex <= player.characters.count{
-                let selectedHero = player.characters[currentIndex - 1]
-                print("       ")
-                print("You have chosen \(selectedHero.heroDescription())")
-                print("       ")
-                choosingAnAction(for: selectedHero, in: player)
-            }else{
-                print("You have to chose a number between 1 and \(player.characters.count)")
-                chooseCharacter(for: player)
-            }
-        }else{
-            print("You didn't write any number, please choose between 1 and \(player.characters.count)")
-            chooseCharacter(for: player)
+        while true{
+            guard let choosing = readLine(),
+                          let currentIndex = Int(choosing),
+                          currentIndex > 0 && currentIndex <= player.characters.count else {
+                            print("You have to chose between 1 and \(player.characters.count)")
+                            continue
+                            }
+                        
+                            let selectedHero = player.characters[currentIndex - 1]
+            
+                            print("       ")
+                            print("You have chosen \(selectedHero.heroDescription())")
+                            print("       ")
+                            
+                            return selectedHero
+                    }
         }
-    }
-    // If the chosen character is a healer, we redirect the player to chose on hero to heal, otherwise, we redirect the player to chose an enemy to attack.
-    func choosingAnAction(for hero: Character, in player: Player){
+        
+    
+    // We ask the player if he wants to attack or heal.
+    func chooseAction(for hero: Character) -> Action{
         print("Choose an action for \(hero.name) !")
         print("""
         1. Attack ⚔️
         2. Heal ❤️
         """)
-        let choice = readLine()
-        
-        switch choice{
-        case "1":
-            attackChoice(for: hero, target: player)
-        case "2":
-            healChoice(for: hero, in: player)
-        default: print("You must chose between 1 and 2")
+        while true{
+            guard let choice = readLine(),
+                  !choice.isEmpty,
+                  let choosingAction = Int(choice),
+                  let rawChoice = Action(rawValue: choosingAction) else{
+                        print("You must choose between 1 and 2")
+                        continue
+            }
+               return rawChoice
+        }
+    }
+    
+    func confirmAction(for action : Action, for character: Character, for player: Player){
+        switch action{
+        case .attack :
+            return attackChoice(for: character, target: player)
+        case .heal :
+            return healChoice(for: character, in: player)
         }
     }
     
@@ -190,23 +203,25 @@ class GameSession {
         for (index, hero) in allyTeam.characters.enumerated(){
             print("\(index + 1): \(hero.name) has currently \(hero.healthPoints) HP.")
         }
-        if let healing = readLine(), !healing.isEmpty, let currentIndex = Int(healing){
-            if currentIndex > 0 && currentIndex <= allyTeam.characters.count{
-                let heroToHeal = allyTeam.characters[currentIndex - 1]
-                print("\(heroToHeal.name), is going to be healed by \(alliedHero.name) and increase his HP by \(alliedHero.heal)")
-                heroToHeal.healthPoints += alliedHero.heal
-                print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
-            }
-            else{
-                print("You must select between 1 and \(allyTeam.characters.count)")
-                healChoice(for: alliedHero, in: allyTeam)
-            }
+        while true{
+            guard let healing = readLine(),
+                  !healing.isEmpty,
+                  let currentIndex = Int(healing),
+                  currentIndex > 0 && currentIndex <= allyTeam.characters.count else {
+                        print("You must select between 1 and \(allyTeam.characters.count)")
+                        continue
+                        }
+                            let heroToHeal = allyTeam.characters[currentIndex - 1]
+            
+                            print("\(heroToHeal.name), is going to be healed by \(alliedHero.name) and increase his HP by \(alliedHero.heal)")
+            
+                            heroToHeal.healthPoints += alliedHero.heal
+            
+                            print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
+                    break
+                }
         }
-        else{
-            print("Choose a valid number.")
-            healChoice(for: alliedHero, in: allyTeam)
-        }
-    }
+    
     
     // The player choose which character to attack
     // With the constant "opposingTeam", we search the first player team among players who is different than our current player, we can force unwrap since we know there's only two players.
@@ -215,83 +230,92 @@ class GameSession {
         let opposingTeam: Player = players.first(where: {$0 !== enemyTeam})!
         
         print("\(alliedHero.name), chose an enemy :")
-            for (index, enemy) in opposingTeam.characters.enumerated(){
-                print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP. ")
-            }
-        if let attack = readLine(), !attack.isEmpty, let currentIndex = Int(attack){
-            if currentIndex > 0 && currentIndex <= opposingTeam.characters.count{
-                let attackedHero = opposingTeam.characters[currentIndex - 1]
-                // The current hero deals damage to the chosen ennemy "attackedHero"
-                attackedHero.healthPoints -= alliedHero.damage
-                print("\(alliedHero.name), has done \(alliedHero.damage) damage with his \(alliedHero.weapons) to \(attackedHero.name)")
-                print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
-                // If the chosen enemy has 0 Healthpoints or less, we remove it from the array. He's dead.
-                if attackedHero.healthPoints <= 0{
-                    print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
-                    opposingTeam.characters.remove(at: currentIndex - 1)
+        for (index, enemy) in opposingTeam.characters.enumerated(){
+            print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP. ")
+        }
+        while true{
+            
+                guard let attackChoice = readLine(),
+                !attackChoice.isEmpty,
+                let currentIndex = Int(attackChoice),
+                currentIndex > 0 && currentIndex <= opposingTeam.characters.count else{
+                
+                print("You must choose between 1 and \(opposingTeam.characters.count)")
+                continue
                 }
-            }else{
-                print("You must select between 1 and \(opposingTeam.characters.count)")
-                attackChoice(for: alliedHero, target: enemyTeam)
+                    let attackedHero = opposingTeam.characters[currentIndex - 1]
+            
+                        // The current hero deals damage to the chosen ennemy "attackedHero"
+                        attackedHero.healthPoints -= alliedHero.damage
+            
+                        print("\(alliedHero.name), has done \(alliedHero.damage) damage with his \(alliedHero.weapons) to \(attackedHero.name)")
+                        print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
+            
+                        // If the chosen enemy has 0 Healthpoints or less, we remove it from the array. He's dead.
+                        if attackedHero.healthPoints <= 0{
+                            
+                            print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
+                            opposingTeam.characters.remove(at: currentIndex - 1)
+                        }
+                break
             }
-        }else{
-            print("Choose a valid number.")
-            attackChoice(for: alliedHero, target: enemyTeam)
         }
-    }
-    func firstPlayerWin(){
-        print("             ")
-        print("\(playerTwo.name), has won the game ! Congratulations ! 🌟")
-        print("You had these characters when you won:")
-        print("             ")
-        for characterRemaining in playerTwo.characters{
-            print("""
-        \(characterRemaining.heroDescription())
-        """)
-        }
-    }
-    func secondPlayerWin(){
-        print("             ")
-        print("\(playerOne.name), has won the game ! Congratulations ! 🌟")
-        print("You had these characters when you won:")
-        print("             ")
-        for characterRemaining in playerOne.characters{
-            print("""
-        \(characterRemaining.heroDescription())
-        """)
-        }
-    }
+
     // In this function, we create a loop while, who will loop until one of the two players has no characters alive. The winner is printed as well.
     func Battle(){
         
         var numberOfTurn = 0
-        var gameIsOn = true
+        var gameOver = false
         
-        var firstPlayer = playerOne
-        var secondPlayer = playerTwo
-        
-        while gameIsOn{
+        while !gameOver{
             print("        ")
-            print("\(firstPlayer.name), you have to choose between your available heroes.")
-            chooseCharacter(for: firstPlayer)
             
-            swap(&firstPlayer, &secondPlayer)
-            
-            if firstPlayer.characters.isEmpty{
-                secondPlayerWin()
-                print("The game ended at round \(numberOfTurn).")
-                gameIsOn = false
-                restartingTheGame()
+            for currentPlayer in players {
+                
+                print("\(currentPlayer.name), you have to choose between your available heroes.")
+                
+                let selectedCharacter = chooseCharacter(for: currentPlayer)
+                
+                let selectAction = chooseAction(for: selectedCharacter)
+                
+                confirmAction(for: selectAction, for: selectedCharacter, for: currentPlayer)
+                
+                gameOver = declareWinner(for: numberOfTurn)
+                
+                }
+            if !gameOver{
+                numberOfTurn += 1
+                print("Round: \(numberOfTurn)")
             }
-            if secondPlayer.characters.isEmpty{
-                firstPlayerWin()
-                print("The game ended at round \(numberOfTurn).")
-                gameIsOn = false
-                restartingTheGame()
+            if gameOver{
+                break
             }
-            numberOfTurn += 1
         }
     }
+    
+    func declareWinner(for turn: Int) -> Bool{
+        var looser: Player?
+        for currentPlayer in players {
+            if currentPlayer.characters.allSatisfy({ $0.healthPoints <= 0}){
+                looser = currentPlayer
+                break
+            }
+        }
+        if let looser, let winner = players.first(where: {$0 !== looser}){
+            print("     ")
+            print("Congratulations, \(winner.name), you've won the game in \(turn) !")
+            for aliveCharacter in winner.characters{
+                print("        ")
+                print("When you won, these characters were alive !")
+                print("\(aliveCharacter.heroDescription())")
+            }
+            return true
+        }
+        return false
+    }
+    
+    
+    
     func restartingTheGame(){
         print("                 ")
         print("Would you like to restart the game ?")
