@@ -32,7 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		29A2B87E29EFF43200FBAB15 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = SOURCE_ROOT; };
+		29A2B87E29EFF43200FBAB15 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Game/Player.swift; sourceTree = SOURCE_ROOT; };
 		29A2B88029EFF4B000FBAB15 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dwarf.swift; path = Game/Characters/Dwarf.swift; sourceTree = SOURCE_ROOT; };
 		29A2B88229EFF4D800FBAB15 /* Wizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Wizard.swift; path = Game/Characters/Wizard.swift; sourceTree = SOURCE_ROOT; };
 		29A72FE32A0A8B4C00221766 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -87,12 +87,12 @@
 		29A988A429EBF17D00A97395 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				2947CBCA2A0169E90081E17D /* Characters */,
-				29A988AC29EBF22300A97395 /* Character.swift */,
-				29A988A529EBF17D00A97395 /* main.swift */,
 				29A2B87E29EFF43200FBAB15 /* Player.swift */,
+				29A988A529EBF17D00A97395 /* main.swift */,
 				29A72FE32A0A8B4C00221766 /* Game.swift */,
 				29A72FE52A0A8BA000221766 /* GameSession.swift */,
+				29A988AC29EBF22300A97395 /* Character.swift */,
+				2947CBCA2A0169E90081E17D /* Characters */,
 			);
 			path = Game;
 			sourceTree = "<group>";
