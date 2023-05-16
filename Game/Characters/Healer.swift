@@ -1,8 +1,6 @@
 import Foundation
 
-class Healer: Character{
-    
-    
+class Healer: Character {
     init(name: String) {
         super .init(name: name, weapons: "Book of Wisdom", healthPoints: 70, damage: 10, heal: 30, shield: 0)
     }

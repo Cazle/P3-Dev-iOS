@@ -107,12 +107,15 @@
 				29A9889E29EBF17D00A97395 /* Sources */,
 				29A9889F29EBF17D00A97395 /* Frameworks */,
 				29A988A029EBF17D00A97395 /* CopyFiles */,
+				29A7305F2A13952100221766 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Game;
+			packageProductDependencies = (
+			);
 			productName = Game;
 			productReference = 29A988A229EBF17D00A97395 /* Game */;
 			productType = "com.apple.product-type.tool";
@@ -141,6 +144,8 @@
 				Base,
 			);
 			mainGroup = 29A9889929EBF17D00A97395;
+			packageReferences = (
+			);
 			productRefGroup = 29A988A329EBF17D00A97395 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -149,6 +154,27 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29A7305F2A13952100221766 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29A9889E29EBF17D00A97395 /* Sources */ = {
