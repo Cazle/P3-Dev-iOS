@@ -1,6 +1,7 @@
 import Foundation
-// swiftlint:disable all
+
 class GameSession {
+    
     // This enum will serve us later to chose between attack/heal/shield
     enum Action: Int, CaseIterable {
         case attack = 1
@@ -315,4 +316,3 @@ class GameSession {
         return false
     }
 }
-// swiftlint:enable all
