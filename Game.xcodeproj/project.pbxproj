@@ -20,13 +20,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		29A988A029EBF17D00A97395 /* CopyFiles */ = {
+		29A988A029EBF17D00A97395 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -104,10 +105,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29A988A929EBF17D00A97395 /* Build configuration list for PBXNativeTarget "Game" */;
 			buildPhases = (
+				293F53C12A1A79C300ABB104 /* Run SwiftLint */,
 				29A9889E29EBF17D00A97395 /* Sources */,
 				29A9889F29EBF17D00A97395 /* Frameworks */,
-				29A988A029EBF17D00A97395 /* CopyFiles */,
-				29A7305F2A13952100221766 /* ShellScript */,
+				29A988A029EBF17D00A97395 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -156,7 +157,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		29A7305F2A13952100221766 /* ShellScript */ = {
+		293F53C12A1A79C300ABB104 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -166,6 +167,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (

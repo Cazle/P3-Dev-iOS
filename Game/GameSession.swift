@@ -8,18 +8,23 @@ class GameSession {
         case heal = 2
         case shield = 3
     }
+    
     // Declare two players with both name
     var playerOne = Player(name: "Player one")
     var playerTwo = Player(name: "Player two")
+    
     // Variable to handle our two players
     var players: [Player] {
         return [playerOne, playerTwo]
     }
+    // Variable to set the number of heroes
     var maxHeroesPerPlayer = 3
+    
     func startGame() {
         print("The game is starting")
         startingComposingTeams(for: players)
     }
+    
     // Launch the composition of each player
     func startingComposingTeams(for players: [Player]) {
         for player in players {
@@ -32,6 +37,7 @@ class GameSession {
             }
         }
     }
+    
     // Control if the name is unique and make sure that the player has written a name
     func askName() -> String {
         print("                                 ")
@@ -61,6 +67,7 @@ class GameSession {
         }
         return name
     }
+    
     // Function to make sur that the player chose between one and five
     func askHero() -> Int {
         print("""
@@ -81,6 +88,7 @@ class GameSession {
                     return indexOfCharacter
         }
     }
+    
     // The player chose a hero between the 5 available
     func createHero(for player: Player) {
         print("\(player.name), you have to chose 3 heroes.")
@@ -119,6 +127,7 @@ class GameSession {
             }
         }
     }
+    
     // Resume of each player's team
     func resumeOfTeams() {
         print("Entering battle phase.")
@@ -131,6 +140,7 @@ class GameSession {
             }
         }
     }
+    
     // This function allow the player to choose a character, and the function control the user input.
     func chooseCharacter(for player: Player) -> Character {
         for (index, availableHero) in player.characters.enumerated() {
@@ -150,6 +160,7 @@ class GameSession {
                             return selectedHero
                     }
         }
+    
     // We ask the player if he wants to attack or heal.
     func chooseAction(for hero: Character) -> Action {
         print("Choose an action for \(hero.name) !")
@@ -169,6 +180,7 @@ class GameSession {
                return rawChoice
         }
     }
+    
     func confirmAction(for action: Action, for character: Character, for player: Player) {
         switch action {
         case .attack:
@@ -179,6 +191,7 @@ class GameSession {
             return shieldChoice(for: character, in: player)
         }
     }
+    
     func shieldChoice(for hero: Character, in alliedTeam: Player) {
         print("""
         \(hero.name), choose a character to protect.
@@ -211,6 +224,7 @@ class GameSession {
                 break
         }
     }
+    
     // The player must choose what character he wants to heal.
     func healChoice(for alliedHero: Character, in allyTeam: Player) {
         print("\(alliedHero.name), choose a character to heal.")
@@ -233,6 +247,7 @@ class GameSession {
                     break
                 }
         }
+    
     // The player choose which character to attack
     func attackChoice(for attackingHero: Character, target enemyTeam: Player) {
         let opposingTeam: Player = players.first(where: {$0 !== enemyTeam})!
@@ -273,6 +288,7 @@ class GameSession {
     func battle() {
         var numberOfTurn = 0
         var gameOver = false
+        
         while !gameOver {
             print("        ")
             for currentPlayer in players {
@@ -292,6 +308,7 @@ class GameSession {
             }
         }
     }
+    
     // If there is a player who has no character alive, it become the loser, and we print the winner and all these characters alive.
     func declareWinner(for turn: Int) -> Bool {
         var looser: Player?

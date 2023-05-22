@@ -1,4 +1,5 @@
 import Foundation
+
 class Game {
     // Main menu, with 2 options, one to start the game, the other to exit the game.
     func startingTheGame() {

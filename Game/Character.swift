@@ -7,6 +7,7 @@ class Character {
     var damage: Int
     var heal: Int
     var shield: Int
+    
     init(name: String, weapons: String, healthPoints: Int, damage: Int, heal: Int, shield: Int) {
         self.name = name
         self.weapons = weapons
@@ -15,9 +16,8 @@ class Character {
         self.heal = heal
         self.shield = shield
     }
-    // swiftlint:disable line_length
+    
     func heroDescription() -> String {
         "\(name), has \(healthPoints) HP. With a \(weapons), who deal \(damage). Can heal \(heal) HP and have \(shield) level on shield."
         }
     }
-    // swiftlint:enable line_length
