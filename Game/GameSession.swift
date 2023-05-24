@@ -253,7 +253,7 @@ class GameSession {
         let opposingTeam: Player = players.first(where: {$0 !== enemyTeam})!
         print("\(attackingHero.name), chose an enemy :")
         for (index, enemy) in opposingTeam.characters.enumerated() {
-            print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP. ")
+            print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP and \(enemy.shield) level of shield. ")
         }
         while true {
             guard let attackChoice = readLine(),
