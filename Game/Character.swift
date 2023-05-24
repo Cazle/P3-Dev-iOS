@@ -19,5 +19,5 @@ class Character {
     
     func heroDescription() -> String {
         "\(name), has \(healthPoints) HP. With a \(weapons), who deal \(damage). Can heal \(heal) HP and have \(shield) level on shield."
-        }
     }
+}

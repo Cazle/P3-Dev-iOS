@@ -79,13 +79,13 @@ class GameSession {
         """)
         while true {
             guard let characterChoice = readLine(),
-                          !characterChoice.isEmpty,
-                          let indexOfCharacter = Int(characterChoice),
-                          (1...5).contains(indexOfCharacter) else {
-                            print("You must choose between 1 and 5")
-                            continue
-                            }
-                    return indexOfCharacter
+                  !characterChoice.isEmpty,
+                  let indexOfCharacter = Int(characterChoice),
+                  (1...5).contains(indexOfCharacter) else {
+                print("You must choose between 1 and 5")
+                continue
+            }
+            return indexOfCharacter
         }
     }
     
@@ -148,18 +148,18 @@ class GameSession {
         }
         while true {
             guard let choosing = readLine(),
-                          let currentIndex = Int(choosing),
-                          currentIndex > 0 && currentIndex <= player.characters.count else {
-                            print("You have to chose between 1 and \(player.characters.count)")
-                            continue
-                            }
-                            let selectedHero = player.characters[currentIndex - 1]
-                            print("       ")
-                            print("You have chosen \(selectedHero.heroDescription())")
-                            print("       ")
-                            return selectedHero
-                    }
+                  let currentIndex = Int(choosing),
+                  currentIndex > 0 && currentIndex <= player.characters.count else {
+                print("You have to chose between 1 and \(player.characters.count)")
+                continue
+            }
+            let selectedHero = player.characters[currentIndex - 1]
+            print("       ")
+            print("You have chosen \(selectedHero.heroDescription())")
+            print("       ")
+            return selectedHero
         }
+    }
     
     // We ask the player if he wants to attack or heal.
     func chooseAction(for hero: Character) -> Action {
@@ -174,10 +174,10 @@ class GameSession {
                   !choice.isEmpty,
                   let choosingAction = Int(choice),
                   let rawChoice = Action(rawValue: choosingAction) else {
-                        print("You must choose between 1 and 3")
-                        continue
+                print("You must choose between 1 and 3")
+                continue
             }
-               return rawChoice
+            return rawChoice
         }
     }
     
@@ -208,20 +208,20 @@ class GameSession {
                   indexOfShield > 0 && indexOfShield <= alliedTeam.characters.count else {
                 print("You must select between 1 and \(alliedTeam.characters.count)")
                 continue
-                }
-                let heroToShield = alliedTeam.characters[indexOfShield - 1]
-                let maxShieldPerCharacter = 3
-                if heroToShield.shield == maxShieldPerCharacter {
-                    print("     ")
-                    print("The maximum amount of shield is 3. I've warned you, now wait for your turn 🤡.")
-                    print("     ")
-                    break
-                } else {
-                    heroToShield.shield += 1
-                }
-                print("\(hero.name), is going to protect \(heroToShield.name) from 1 attacks")
-                print("\(heroToShield.name), has now \(heroToShield.shield) level of shield. Wise choice !")
+            }
+            let heroToShield = alliedTeam.characters[indexOfShield - 1]
+            let maxShieldPerCharacter = 3
+            if heroToShield.shield == maxShieldPerCharacter {
+                print("     ")
+                print("The maximum amount of shield is 3. I've warned you, now wait for your turn 🤡.")
+                print("     ")
                 break
+            } else {
+                heroToShield.shield += 1
+            }
+            print("\(hero.name), is going to protect \(heroToShield.name) from 1 attacks")
+            print("\(heroToShield.name), has now \(heroToShield.shield) level of shield. Wise choice !")
+            break
         }
     }
     
@@ -234,19 +234,19 @@ class GameSession {
         }
         while true {
             guard let healing = readLine(),
-                !healing.isEmpty,
-                let currentIndex = Int(healing),
-                currentIndex > 0 && currentIndex <= allyTeam.characters.count else {
-                    print("You must select between 1 and \(allyTeam.characters.count)")
-                    continue
-                        }
-                let heroToHeal = allyTeam.characters[currentIndex - 1]
-                print("\(heroToHeal.name), will be healed by \(alliedHero.name) and increase his HP by \(alliedHero.heal)")
-                            heroToHeal.healthPoints += alliedHero.heal
-                            print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
-                    break
-                }
+                  !healing.isEmpty,
+                  let currentIndex = Int(healing),
+                  currentIndex > 0 && currentIndex <= allyTeam.characters.count else {
+                print("You must select between 1 and \(allyTeam.characters.count)")
+                continue
+            }
+            let heroToHeal = allyTeam.characters[currentIndex - 1]
+            print("\(heroToHeal.name), will be healed by \(alliedHero.name) and increase his HP by \(alliedHero.heal)")
+            heroToHeal.healthPoints += alliedHero.heal
+            print("\(heroToHeal.name) has now \(heroToHeal.healthPoints) HP.")
+            break
         }
+    }
     
     // The player choose which character to attack
     func attackChoice(for attackingHero: Character, target enemyTeam: Player) {
@@ -256,34 +256,34 @@ class GameSession {
             print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP. ")
         }
         while true {
-                guard let attackChoice = readLine(),
-                !attackChoice.isEmpty,
-                let currentIndex = Int(attackChoice),
-                currentIndex > 0 && currentIndex <= opposingTeam.characters.count else {
+            guard let attackChoice = readLine(),
+                  !attackChoice.isEmpty,
+                  let currentIndex = Int(attackChoice),
+                  currentIndex > 0 && currentIndex <= opposingTeam.characters.count else {
                 print("You must choose between 1 and \(opposingTeam.characters.count)")
                 continue
-                }
-                    let attackedHero = opposingTeam.characters[currentIndex - 1]
-                    print("\(attackingHero.name), deals \(attackingHero.damage) damage with his \(attackingHero.weapons) to \(attackedHero.name)")
-                    // If the attacked Hero has a level of shield, we reduce the damage received by two and we reduce the level of the shield by one.
-                    // Else, we attack normally.
-                    if attackedHero.shield > 0 {
-                        print("\(attackedHero.name) is protected by a shield, the damage he received are divided by two !")
-                        attackedHero.healthPoints -= attackingHero.damage / 2
-                        attackedHero.shield -= 1
-                    } else {
-                        attackedHero.healthPoints -= attackingHero.damage
-                    }
-                    // If the character has 0 healthPoints or less. We remove it from the game.
-                    if attackedHero.healthPoints <= 0 {
-                        print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
-                        opposingTeam.characters.remove(at: currentIndex - 1)
-                    }
-                    print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
-                break
             }
+            let attackedHero = opposingTeam.characters[currentIndex - 1]
+            print("\(attackingHero.name), deals \(attackingHero.damage) damage with his \(attackingHero.weapons) to \(attackedHero.name)")
+            // If the attacked Hero has a level of shield, we reduce the damage received by two and we reduce the level of the shield by one.
+            // Else, we attack normally.
+            if attackedHero.shield > 0 {
+                print("\(attackedHero.name) is protected by a shield, the damage he received are divided by two !")
+                attackedHero.healthPoints -= attackingHero.damage / 2
+                attackedHero.shield -= 1
+            } else {
+                attackedHero.healthPoints -= attackingHero.damage
+            }
+            // If the character has 0 healthPoints or less. We remove it from the game.
+            if attackedHero.healthPoints <= 0 {
+                print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
+                opposingTeam.characters.remove(at: currentIndex - 1)
+            }
+            print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
+            break
         }
-
+    }
+    
     // In this function, we create a loop while, who will loop until one of the two players has no characters alive. The winner is printed as well.
     func battle() {
         var numberOfTurn = 0
