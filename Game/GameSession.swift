@@ -250,37 +250,37 @@ class GameSession {
     
     // The player choose which character to attack
     func attackChoice(for attackingHero: Character, target enemyTeam: Player) {
-        let opposingTeam: Player = players.first(where: {$0 !== enemyTeam})!
-        print("\(attackingHero.name), chose an enemy :")
-        for (index, enemy) in opposingTeam.characters.enumerated() {
-            print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP and \(enemy.shield) level of shield. ")
-        }
-        while true {
-            guard let attackChoice = readLine(),
-                  !attackChoice.isEmpty,
-                  let currentIndex = Int(attackChoice),
-                  currentIndex > 0 && currentIndex <= opposingTeam.characters.count else {
-                print("You must choose between 1 and \(opposingTeam.characters.count)")
-                continue
+        if let opposingTeam: Player = players.first(where: {$0 !== enemyTeam}) {
+            print("\(attackingHero.name), chose an enemy :")
+            for (index, enemy) in opposingTeam.characters.enumerated() {
+                print("\(index + 1): \(enemy.name) and has \(enemy.healthPoints) HP and \(enemy.shield) level of shield. ")
             }
-            let attackedHero = opposingTeam.characters[currentIndex - 1]
-            print("\(attackingHero.name), deals \(attackingHero.damage) damage with his \(attackingHero.weapons) to \(attackedHero.name)")
-            // If the attacked Hero has a level of shield, we reduce the damage received by two and we reduce the level of the shield by one.
-            // Else, we attack normally.
-            if attackedHero.shield > 0 {
-                print("\(attackedHero.name) is protected by a shield, the damage he received are divided by two !")
-                attackedHero.healthPoints -= attackingHero.damage / 2
-                attackedHero.shield -= 1
-            } else {
-                attackedHero.healthPoints -= attackingHero.damage
+            while true {
+                guard let attackChoice = readLine(),
+                      !attackChoice.isEmpty,
+                      let currentIndex = Int(attackChoice),
+                      currentIndex > 0 && currentIndex <= opposingTeam.characters.count else {
+                    print("You must choose between 1 and \(opposingTeam.characters.count)")
+                    continue
+                }
+                let attackedHero = opposingTeam.characters[currentIndex - 1]
+                print("\(attackingHero.name), deals \(attackingHero.damage) damage with his \(attackingHero.weapons) to \(attackedHero.name)")
+                // If the attacked Hero has a level of shield, we reduce the damage received by two and we reduce the level of the shield by one.
+                if attackedHero.shield > 0 {
+                    print("\(attackedHero.name) is protected by a shield, the damage he received are divided by two !")
+                    attackedHero.healthPoints -= attackingHero.damage / 2
+                    attackedHero.shield -= 1
+                } else {
+                    attackedHero.healthPoints -= attackingHero.damage
+                }
+                // If the character has 0 healthPoints or less. We remove it from the game.
+                if attackedHero.healthPoints <= 0 {
+                    print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
+                    opposingTeam.characters.remove(at: currentIndex - 1)
+                }
+                print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
+                break
             }
-            // If the character has 0 healthPoints or less. We remove it from the game.
-            if attackedHero.healthPoints <= 0 {
-                print("\(attackedHero.name) has \(attackedHero.healthPoints) HP. He's dead.")
-                opposingTeam.characters.remove(at: currentIndex - 1)
-            }
-            print("\(attackedHero.name) has now \(attackedHero.healthPoints) HP.")
-            break
         }
     }
     
